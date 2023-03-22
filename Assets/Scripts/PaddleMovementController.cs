@@ -7,8 +7,7 @@ public class PaddleMovementController : MonoBehaviour
     [SerializeField]
     private float speed = 100;
 
-    private Vector3 rotationAxis = new Vector3(0, 0, 1);
-    private Vector3 pivotPoint = new Vector3(0, 0, 0);
+    
 
     private void ReverseRotation()
     {
@@ -19,6 +18,6 @@ public class PaddleMovementController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
             ReverseRotation();
-        transform.RotateAround(pivotPoint, rotationAxis, speed * Time.deltaTime);
+        transform.RotateAround(GameManager.pivotPoint, GameManager.rotationAxis, speed * Time.deltaTime);
     }
 }
