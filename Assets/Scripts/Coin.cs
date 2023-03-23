@@ -36,6 +36,7 @@ public class Coin : MonoBehaviour
             yield return fadeOut;
         }
 
+        lerpDuration = lerpDuration * Time.deltaTime;
         float timeElapsed = 0;
         while (timeElapsed < lerpDuration)
         {
@@ -58,6 +59,7 @@ public class Coin : MonoBehaviour
             yield return fadeOut;
         }
 
+        lerpDuration = lerpDuration * Time.deltaTime;
         float timeElapsed = 0;
         while (timeElapsed < lerpDuration)
         {

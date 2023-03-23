@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private Coin coinPrefab;
+
+    [SerializeField]
+    private PaddleMovementController paddle;
 
     private Coin activeCoin;
 
@@ -21,17 +25,25 @@ public class GameManager : MonoBehaviour
     {
         activeCoin = Instantiate(coinPrefab);
     }
+
     void Start()
     {
-        
+        InstantiateCoin();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            InstantiateCoin();
+            if (paddle.overlapping)
+            {
+                activeCoin.Disappear();
+                int cnt = Int32.Parse(countDownText.text);
+                cnt--;
+                countDownText.text = cnt.ToString();
+                paddle.ReverseRotation();
+                InstantiateCoin();
+            }
         }
     }
 }

@@ -7,17 +7,24 @@ public class PaddleMovementController : MonoBehaviour
     [SerializeField]
     private float speed = 100;
 
-    
+    public bool overlapping = false;
 
-    private void ReverseRotation()
+    public void ReverseRotation()
     {
         speed *= -1;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            ReverseRotation();
         transform.RotateAround(GameManager.pivotPoint, GameManager.rotationAxis, speed * Time.deltaTime);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        overlapping = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        overlapping = false;
     }
 }
